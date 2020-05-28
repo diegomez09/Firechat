@@ -1,7 +1,13 @@
 <h1>Chat</h1>
 <hr>
 <div class="app-mensajes" id="app-mensajes">
-    <div class="text-right">
+    <div class="text-right" *ngFor="let item of chatS.chats">
+        <span class="badge badge-primary">
+            Fernando
+        </span>
+        <p>{{item.mensaje}}</p>
+    </div>
+    <!-- <div class="text-right">
         <span class="badge badge-primary">
             Fernando
         </span>
@@ -14,7 +20,7 @@
         <p>
             Hola Fer
         </p>
-    </div>    
+    </div>     -->
 </div>
 <input class="form-control"
 type="text" 

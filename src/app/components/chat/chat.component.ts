@@ -9,19 +9,28 @@ import { ChatService } from 'src/app/providers/chat.service';
 })
 export class ChatComponent implements OnInit {
 
-  mensaje:string = '';
-  
-  constructor(public chatS:ChatService) { 
-    this.chatS.cargarMensajes().subscribe((mensajes:any[]) =>{
-      console.log(mensajes);
-    });
+  mensaje: string = '';
+
+  constructor(public chatS: ChatService) {
+    this.chatS.cargarMensajes().subscribe();
   }
 
   ngOnInit(): void {
   }
 
-  enviar_mensaje(){
-    console.log(this.mensaje);
+  enviar_mensaje() {
+    if (this.mensaje.length === 0) {
+      return;
+    }
+    this.chatS.agregarMnesaje(this.mensaje).then(
+      () => {
+        console.log('success');
+        this.mensaje = '';
+      }
+    ).catch(
+      (err) => {
+        console.log('error', err);
+      })
   }
-    
+
 }
