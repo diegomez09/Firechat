@@ -10,6 +10,8 @@ import { environment } from '../environments/environment';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ChatComponent } from './components/chat/chat.component';
+//services
+import { ChatService } from './providers/chat.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ChatComponent } from './components/chat/chat.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    //ChatService
   ],
   providers: [],
   bootstrap: [AppComponent]
