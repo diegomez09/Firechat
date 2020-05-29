@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   logout(){
+    console.log(this.usuario);
     this.servicio.logout();
   }
 }

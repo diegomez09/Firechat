@@ -20,12 +20,12 @@ export class ChatService {
   constructor(private afs: AngularFirestore,
     public auth: AngularFireAuth) {
       this.auth.authState.subscribe(cambio =>{
-        console.log(cambio)
-        if(!this.user){
+        //console.log(cambio)
+        if(!cambio){
           return;
         }
         this.user.nombre = cambio.displayName;
-        this.user.id = cambio.uid;
+        this.user.uid = cambio.uid;
       })
      }
   //recibo los mensajes del servicio
@@ -50,9 +50,10 @@ export class ChatService {
   //mando msj typeado
   agregarMnesaje(msj: string) {
     let mensaje: Mensaje = {
-      nombre: 'demo',
+      nombre: this.user.nombre,
       mensaje: msj,
       fecha: new Date().getTime(),
+      uid: this.user.uid,
     }
 
     return this.itemsCollection.add(mensaje);
@@ -63,6 +64,8 @@ export class ChatService {
   }
 
   logout() {
+    this.user = {};
+    //console.log(this.user);
     this.auth.signOut();
   }
 
